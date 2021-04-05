@@ -10,9 +10,9 @@ import com.cp.sports.Exception.OrderServiceException;
 @RestControllerAdvice
 /****************************
  * @author Leya Varghese 
- * Description It is a ControllerAdvice which allows to handle exceptions across the whole application
- *Version 1.0 
- *Created Date 22-March-2021
+ * Description It is a ControllerAdvice which allows to handle OrderServiceException across the whole application
+ * Version 1.0 
+ * Created Date 22-March-2021
  ****************************/
 public class OrderControllerAdvice {
 	/****************************
