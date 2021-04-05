@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cp.sports.Entity.Address;
 import com.cp.sports.Entity.Customer;
 import com.cp.sports.Entity.Orders;
+import com.cp.sports.Exception.OrderServiceException;
 import com.cp.sports.Service.IOrderService;
 
 @SpringBootTest
@@ -26,10 +28,13 @@ public class IOrderServiceTest {
 
 	@Test
 	void addOrderTest() {
-//iOrderService.addOrder(order);
+		Address addr = new Address("21", "ganeshnagar", "power house", "chirla", "AP", 523157);
+		Customer cust = new Customer("1", "Leya11", "vtu665@gmail.com", "9845612378", LocalDate.parse("1999-12-12"),
+				addr);
+		Orders order = new Orders(1, 500.0, LocalDate.parse("2021-12-12"), cust);
+         iOrderService.addOrder(order);
 		assertNotNull(order.getAmount());
-		System.out.println(iOrderService.getOrderDetails(10));
-		System.out.println(iOrderService.getAllOrders().size());
+		iOrderService.removeOrder(1);
 	}
 
 	@Test
@@ -58,6 +63,12 @@ public class IOrderServiceTest {
 				addr);
 		Orders order1 = new Orders(2, 500.0, LocalDate.parse("2021-12-12"), cust);
 		iOrderService.addOrder(order1);
-		assertNull(iOrderService.removeOrder(2));
+		assertEquals(500.0,iOrderService.removeOrder(2).getAmount());
+	}
+	@Test
+	void exceptionTest() {
+		assertThrows(OrderServiceException.class,()->{
+			iOrderService.removeOrder(2);
+		});
 	}
 }

@@ -15,11 +15,13 @@ import com.cp.sports.Exception.CustomerServiceException;
 
 
 /************************************************************************************
- * @author G. Jhansi Description It is a service class that provides the
+ * @author G. Jhansi 
+ * Description It is a service class that provides the
  *         services to add a customer, remove a customer, update a customer and
  *         view a customer
  * 
- *         Version 1.0 Created Date 24-March-2021
+ * Version 1.0 
+ * Created Date 24-March-2021
  ************************************************************************************/
 @Service
 @Repository

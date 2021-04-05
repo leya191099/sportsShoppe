@@ -23,6 +23,13 @@ import io.swagger.annotations.Api;
 @RestController
 @Api(value = "Swagger2DemoRestController")
 @RequestMapping("/sport")
+/****************************
+ * @author G. Jhansi 
+ * Description It is a Controller class that provides the
+ *         Handler methods for manipulating the Customer table in the database 
+ *Version 1.0 
+ *Created Date 24-March-2021
+ ****************************/
 public class CustomerController {
 	@Autowired
 	private ICustomerService customerService;
@@ -35,7 +42,7 @@ public class CustomerController {
                                           body onto a Java object.
 	 *@returns Customer                 - returns customer after adding the customer to database 
 	 * @throws CustomerServiceException - It is raised when customer already exists
-	 * CreatedBy                        - S.Abhishek 
+	 * CreatedBy                        - G. Jhansi 
 	 * Created Date                     - 24-MAR-2021
 	 ************************************************************************************/
 	
@@ -54,9 +61,10 @@ public class CustomerController {
                                           body onto a Java object.
 	 *@returns void                     - returns void 
 	 * @throws CustomerServiceException - It is raised when customer already exists
-	 * CreatedBy                        - S.Abhishek 
+	 * CreatedBy                        - G. Jhansi
 	 * Created Date                     - 24-MAR-2021
 	 ************************************************************************************/
+	
 	@DeleteMapping("/customer/{id}")
 	public void deleteCustomer(@PathVariable String id) throws CustomerServiceException{
 	customerService.removeCustomer(id);
@@ -67,9 +75,10 @@ public class CustomerController {
 	 * @param customer                  - customer to be updated
 	 *@returns Customer                 - returns customer after updating the customer to database 
 	 * @throws CustomerServiceException - It is raised when customer not found
-	 * CreatedBy                        - S.Abhishek 
+	 * CreatedBy                        - G. Jhansi
 	 * Created Date                     - 23-MAR-2021
 	 ************************************************************************************/
+
 	@PutMapping("/customer")
 	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
 		Customer resultCustomer = customerService.updateCustomer(customer.getUserId(),customer);
@@ -81,7 +90,7 @@ public class CustomerController {
 	 * @param customer                  - To fetch the customer from the database
 	 *@returns Customer                 - returns customer after fetching the database
 	 * @throws CustomerServiceException - It is raised when customer does not exists
-	 * CreatedBy                        - S.Abhishek 
+	 * CreatedBy                        - G. Jhansi 
 	 * Created Date                     - 23-MAR-2021
 	 ************************************************************************************/
 
@@ -95,9 +104,10 @@ public class CustomerController {
 	 * Description                      : To get all the customers from the database
 	 *@returns List<Customer>           - returns customers after fetching the database 
 	 * @throws CustomerServiceException - It is raised when customer does not found
-	 * CreatedBy                        - S.Abhishek 
+	 * CreatedBy                        - G. Jhansi 
 	 * Created Date                     - 23-MAR-2021
 	 ************************************************************************************/
+
 
 	@GetMapping("/customer/all")
 	public ResponseEntity<List<Customer>> getAllCustomer(){

@@ -91,9 +91,9 @@ public class OrderController {
 	 * Created Date -24-MAR-2021
 	 ****************************/
 	@DeleteMapping("/order/{id}")
-	public Orders removeOrder(@PathVariable long id) throws OrderServiceException {
-		iOrderService.removeOrder(id);
-		return null;
+	public ResponseEntity<Orders> removeOrder(@PathVariable long id) throws OrderServiceException {
+		
+		return new ResponseEntity<Orders>(iOrderService.removeOrder(id),HttpStatus.BAD_REQUEST);
 	}
 
 	/****************************

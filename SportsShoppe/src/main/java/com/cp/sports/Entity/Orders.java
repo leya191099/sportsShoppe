@@ -24,7 +24,7 @@ public class Orders {
 	private long OrderId;
 	private double amount;
 	private LocalDate billingDate;
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL })
 	private Customer customer;
 
 	public Orders() {
