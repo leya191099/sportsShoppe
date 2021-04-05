@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 /****************************
  * @author Leya Varghese 
- * Description This is entity class for the Order module
+ * Description It is entity class for the Order module
  * Version 1.0 
  * Created Date 23-March-2021
  ****************************/
