@@ -1,6 +1,5 @@
 package com.cp.sports.Entity;
 
-
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -11,21 +10,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+/****************************
+ * @author Leya Varghese 
+ * Description This is entity class for the Order module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ ****************************/
 @Entity
 public class Orders {
 	@Id
-	
+
 	private long OrderId;
 	private double amount;
 	private LocalDate billingDate;
-@ManyToOne(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
-private Customer customer;
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	private Customer customer;
+
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	public Orders(long orderId, double amount, LocalDate billingDate, Customer customer) {
 		super();
 		OrderId = orderId;
@@ -34,38 +40,42 @@ private Customer customer;
 		this.customer = customer;
 	}
 
-
 	public long getOrderId() {
 		return OrderId;
 	}
+
 	public void setOrderId(long orderId) {
 		OrderId = orderId;
 	}
+
 	public double getAmount() {
 		return amount;
 	}
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
 	public LocalDate getBillingDate() {
 		return billingDate;
 	}
+
 	public void setBillingDate(LocalDate billingDate) {
 		this.billingDate = billingDate;
 	}
 
-	
 	public Customer getCustomer() {
 		return customer;
 	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 	@Override
 	public String toString() {
 		return "Orders [OrderId=" + OrderId + ", amount=" + amount + ", billingDate=" + billingDate + ", customer="
 				+ customer + "]";
 	}
-	
-	
+
 }

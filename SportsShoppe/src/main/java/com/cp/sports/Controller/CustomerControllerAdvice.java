@@ -12,7 +12,7 @@ import com.cp.sports.Exception.CustomerServiceException;
 public class CustomerControllerAdvice {
 
 	@ExceptionHandler(CustomerServiceException.class)
-	public ResponseEntity<String> foundPaymentException(Exception exception){
+	public ResponseEntity<String> foundCustomerException(Exception exception){
 		return new ResponseEntity<String>(exception.getMessage(),HttpStatus.NOT_FOUND);
 	}
 }

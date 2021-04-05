@@ -11,7 +11,7 @@ import com.cp.sports.Exception.CoupanServiceException;
 public class CoupanControllerAdvice {
 
 	@ExceptionHandler(CoupanServiceException.class)
-	public ResponseEntity<String> foundPaymentException(Exception exception){
+	public ResponseEntity<String> foundCoupanException(Exception exception){
 		return new ResponseEntity<String>(exception.getMessage(),HttpStatus.NOT_FOUND);
 	}
 }
