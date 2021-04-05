@@ -7,8 +7,16 @@ package com.cp.sports.Exception;
  *         Created Date    22-MARCH-2021
  **********/
 public class UserException extends RuntimeException {
-	public UserException(String msg) {
-		super();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public UserException(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
 	}
+
+	
 
 }

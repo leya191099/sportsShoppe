@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cp.sports.Entity.User;
 import com.cp.sports.Exception.InvalidUsernamePasswordException;
+import com.cp.sports.Exception.UserException;
 import com.cp.sports.Service.IUserService;
 
 import io.swagger.annotations.Api;
@@ -50,9 +51,9 @@ public class UserController {
 	 *  Created Date - 24-MAR-2021
 	 **********/
 
-	@PostMapping
-	public User addUser(@RequestBody User user) {
-		return userservice.addUser(user);
+	@PostMapping("/user")
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		return new ResponseEntity<User>(userservice.addUser(user),HttpStatus.OK);
 	}
 
 	/**********
@@ -64,9 +65,9 @@ public class UserController {
 	 * CreatedBy - Tejaswini.T
 	 * Created Date - 23-MAR-2021
 	 **********/
-	@PutMapping
-	public User updateUser(@RequestBody User user) {
-		return userservice.updateUser(user);
+	@PutMapping("/user")
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+		return new ResponseEntity<User>(userservice.updateUser(user),HttpStatus.OK);
 	}
 
 	/**********
@@ -79,9 +80,9 @@ public class UserController {
 	 * CreatedBy - Tejaswini.T
 	 *  Created Date - 24-MAR-2021
 	 **********/
-	@DeleteMapping("/{userID}")
-	public User deleteUser(@PathVariable String userID) {
-		return userservice.deleteUser(userID);
+	@DeleteMapping("/user/{userID}")
+	public ResponseEntity<User> deleteUser(@PathVariable String userID) throws UserException{
+		return new ResponseEntity<User>(userservice.deleteUser(userID),HttpStatus.OK);
 	}
 
 	/**********
@@ -94,9 +95,9 @@ public class UserController {
 	 * Created Date -23-MAR-2021
 	 **********/
 
-	@GetMapping("/{userId}")
-	public User getUserById(@PathVariable String userId) {
-		return userservice.getId(userId);
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<User> getUserById(@PathVariable String userId) throws UserException {
+		return new ResponseEntity<User>(userservice.getId(userId),HttpStatus.OK);
 	}
 	
 	/**********
@@ -108,7 +109,7 @@ public class UserController {
 	 * Created Date -23-MAR-2021
 	 **********/
 
-	@PostMapping("/login")
+	@PostMapping("/user/login")
 	public ResponseEntity<Boolean> loginUser(@RequestBody User user){		
 		return new ResponseEntity<Boolean>(userservice.signIn(user),HttpStatus.OK);
 	}
@@ -122,7 +123,7 @@ public class UserController {
 	 * Created Date -23-MAR-2021
 	 **********/
 	
-	@PostMapping("/logout")
+	@PostMapping("/user/logout")
 	public ResponseEntity<Boolean> logoutUser(@RequestBody User user){		
 		return new ResponseEntity<Boolean>(userservice.signOut(user),HttpStatus.OK);
 	}
@@ -137,7 +138,7 @@ public class UserController {
 	 *  Created Date - 24-MAR-2021
 	 **********/
 		
-	@PutMapping("/updateoldpassword/{id}/{oldpass}/{newpass}")
+	@PutMapping("/user/updateoldpassword/{id}/{oldpass}/{newpass}")
 	public ResponseEntity<User> updateoldPassword(@PathVariable("id") String id,@PathVariable("oldpass") String oldpass,@PathVariable("newpass") String newpass){		
 		return new ResponseEntity<User>(userservice.changePassword(id,oldpass,newpass),HttpStatus.OK);
 	}
@@ -152,7 +153,7 @@ public class UserController {
 	 * Created Date - 23-MAR-2021
 	 **********/
 	
-	@GetMapping(value="/all")
+	@GetMapping("/all")
 	public List<User> getAllUsers(){
 		return userservice.getUsers();
 	}

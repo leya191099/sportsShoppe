@@ -123,7 +123,7 @@ public class CoupanServiceImpl implements ICoupanService{
 			throw new CoupanServiceException("coupanId does not exist to delete");
 		else
 			iCoupanRepository.delete(coupan.get());
-		return null;
+		return coupan.get();
 	}
 
 

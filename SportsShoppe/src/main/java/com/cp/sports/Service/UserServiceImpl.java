@@ -13,8 +13,10 @@ import com.cp.sports.Entity.User;
 import com.cp.sports.Exception.UserException;
 import com.cp.sports.dao.IUserRepository;
 
-@Transactional
+
 @Service
+@Transactional
+@Repository
 /**********
  * @author Tejaswini.T Description It is a service class that provides the
  *         services to add update ,remove, get, add, sign in, sign out ,change
@@ -38,8 +40,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User addUser(User user) {
-		repository.save(user);
-		return user;
+		Optional<User> user1 = repository.findById(user.getUserId());
+		if (user1.isEmpty())
+			return repository.saveAndFlush(user);
+		else
+			throw new UserException("User already exists");
 	}
 
 	/**********
@@ -54,14 +59,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User getId(String userID) {
-		User user = null;
-		try {
-			user = repository.findById(userID).get();
-		} catch (Exception e) {
+		Optional<User> user = repository.findById(userID);
+		if (user.isEmpty())
 			throw new UserException("User with ID: " + userID + " not found!");
-		}
-
-		return user;
+		else
+			return user.get();
 	}
 
 	/**********
@@ -76,13 +78,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User updateUser(User user) {
-		try {
-			getId(user.getUserId());
-			repository.saveAndFlush(user);
-		} catch (Exception e) {
-			throw new UserException("User Can not be updated!");
-		}
-
+		Optional<User> user1 = repository.findById(user.getUserId());
+		if (user1.isEmpty())
+			throw new UserException("user not found");
+		else
+			repository.save(user);
 		return user;
 	}
 
@@ -99,15 +99,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User deleteUser(String userID) throws UserException {
 		Optional<User> user = repository.findById(userID);
-		try {
-			if (!user.isEmpty())
-				repository.delete(user.get());
-
-		} catch (Exception e) {
+		if (!user.isEmpty())
+			repository.delete(user.get());
+		else
 			throw new UserException("User Not Found To Delete!");
-		}
-
-		return null;
+		return user.get();
 	}
 
 	/**********

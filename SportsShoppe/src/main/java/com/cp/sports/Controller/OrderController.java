@@ -47,8 +47,8 @@ public class OrderController {
 	 * Created Date -24-MAR-2021
 	 ****************************/
 	@PostMapping("/order")
-	public Orders addOrder(@RequestBody Orders order) {
-		return iOrderService.addOrder(order);
+	public ResponseEntity<Orders> addOrder(@RequestBody Orders order) {
+		return new ResponseEntity<Orders>(iOrderService.addOrder(order),HttpStatus.OK);
 	}
 
 	/****************************

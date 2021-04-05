@@ -20,7 +20,7 @@ public class ICoupanServiceTest {
 	
 	}
 	@Test
-	void getCoupanIdtest() {
+	void getCoupanIdTest() {
 		Coupan coupan = new Coupan("22","Diwali Coupan","Festival coupan","best offer coupan");
 		coupanService.addCoupans(coupan);
 		assertEquals("Coupan [coupanId=22, coupanName=Diwali Coupan, coupanType=Festival coupan, coupanDescription=best offer coupan]",coupanService.getCoupan("22").toString());
