@@ -3,6 +3,12 @@ package com.cp.sports.Entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 @Entity
+/**********
+ * @author G. Jhansi 
+ * Description It is entity class for the Address module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ **********/
 public class Address {
 @Id
 	private String doorNo;

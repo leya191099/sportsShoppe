@@ -8,7 +8,12 @@ import javax.persistence.Id;
 
 
 @Entity
-
+/****************************
+ * @author  A.Hari Chandana
+ * Description It is entity class for the Coupan module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ ****************************/
 public class Coupan {
 	@Id
 	private String coupanId;

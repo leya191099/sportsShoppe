@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+/****************************
+ * @author G.Joslin 
+ * Description It is entity class for the Cart module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ ****************************/
 public class Cart {
 	public Cart(long cartId, String imageName, String productName, int quantity, double price, double total) {
 		super();

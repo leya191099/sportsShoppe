@@ -8,6 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
+/**********
+ * @author G. Jhansi 
+ * Description It is entity class for the Customer module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ **********/
 public class Customer {
 	@Id
 	private String userId;

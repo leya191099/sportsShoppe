@@ -10,6 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
+/****************************
+ * @author G. Joslin
+ * Description It is entity class for the Product module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ ****************************/
 public class Product {
 	public Product() {
 		super();
