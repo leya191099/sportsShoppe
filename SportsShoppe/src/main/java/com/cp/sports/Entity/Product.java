@@ -2,8 +2,12 @@ package com.cp.sports.Entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -12,8 +16,8 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String productId, String productName, String category, String description, String brand, String color,
-			String size, String mrp, int discount, double priceAfterDiscount, boolean inStock,
+	public Product(String productId, String productName, String category, String description, String brand,
+			String color, String size, String mrp, int discount, double priceAfterDiscount, boolean inStock,
 			LocalDate estimatedDelivery) {
 		super();
 		this.productId = productId;
@@ -43,6 +47,10 @@ public class Product {
 	private double priceAfterDiscount;
 	private boolean inStock;
 	private LocalDate estimatedDelivery;
+
+	@OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "cartId", referencedColumnName = "cartId")
+	private Cart cart;
 
 	public String getProductId() {
 		return productId;
@@ -143,9 +151,9 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", category=" + category
-				+ ", description=" + description + ", brand=" + brand + ", color=" + color + ", size=" + sizes + ", mrp="
-				+ mrp + ", discount=" + discount + ", priceAfterDiscount=" + priceAfterDiscount + ", inStock=" + inStock
-				+ ", estimatedDelivery=" + estimatedDelivery + "]";
+				+ ", description=" + description + ", brand=" + brand + ", color=" + color + ", size=" + sizes
+				+ ", mrp=" + mrp + ", discount=" + discount + ", priceAfterDiscount=" + priceAfterDiscount
+				+ ", inStock=" + inStock + ", estimatedDelivery=" + estimatedDelivery + "]";
 	}
 
 }
