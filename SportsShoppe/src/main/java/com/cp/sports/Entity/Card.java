@@ -27,7 +27,7 @@ public class Card {
 		super();
 	}
 
-	public Card(Long id,String cardName, String cardNumber, LocalDate expiryDate, String bankName) {
+	public Card(long id,String cardName, String cardNumber, LocalDate expiryDate, String bankName) {
 		super();
 		this.id=id;
 		this.cardName = cardName;

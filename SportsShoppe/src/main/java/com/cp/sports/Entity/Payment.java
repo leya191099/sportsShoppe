@@ -31,9 +31,9 @@ public class Payment {
 		super();
 	}
 
-	public Payment(long paymentId,String type, String status, long id,String cardName, String cardNumber, LocalDate expiryDate, String bankName) {
+	public Payment(long paymentId,String type, String status,Card card) {
 		super();
-		this.card = new Card(id,cardName,cardNumber,expiryDate,bankName);
+		this.card =card;
 		this.paymentId=paymentId;
 		this.type = type;
 		this.status = status;

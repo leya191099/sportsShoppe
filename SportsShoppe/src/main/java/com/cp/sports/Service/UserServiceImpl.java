@@ -26,7 +26,7 @@ import com.cp.sports.dao.IUserRepository;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	private IUserRepository repository;
+	private IUserRepository iUserRepository;
 
 	/**********
 	 * Method :addUser Description :To add the user to the database
@@ -40,9 +40,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User addUser(User user) {
-		Optional<User> user1 = repository.findById(user.getUserId());
+		Optional<User> user1 = iUserRepository.findById(user.getUserId());
 		if (user1.isEmpty())
-			return repository.saveAndFlush(user);
+			return iUserRepository.saveAndFlush(user);
 		else
 			throw new UserException("User already exists");
 	}
@@ -59,7 +59,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User getId(String userID) {
-		Optional<User> user = repository.findById(userID);
+		Optional<User> user = iUserRepository.findById(userID);
 		if (user.isEmpty())
 			throw new UserException("User with ID: " + userID + " not found!");
 		else
@@ -78,11 +78,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User updateUser(User user) {
-		Optional<User> user1 = repository.findById(user.getUserId());
+		Optional<User> user1 = iUserRepository.findById(user.getUserId());
 		if (user1.isEmpty())
 			throw new UserException("user not found");
 		else
-			repository.save(user);
+			iUserRepository.save(user);
 		return user;
 	}
 
@@ -98,9 +98,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User deleteUser(String userID) throws UserException {
-		Optional<User> user = repository.findById(userID);
+		Optional<User> user = iUserRepository.findById(userID);
 		if (!user.isEmpty())
-			repository.delete(user.get());
+			iUserRepository.delete(user.get());
 		else
 			throw new UserException("User Not Found To Delete!");
 		return user.get();
@@ -120,7 +120,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public Boolean signIn(User user) {
 		Boolean status = false;
-		Optional<User> resultUser = repository.findById(user.getUserId());
+		Optional<User> resultUser = iUserRepository.findById(user.getUserId());
 		if (!resultUser.isEmpty()) {
 			if (resultUser.get().getPassword().equals(user.getPassword())) {
 				status = true;
@@ -149,7 +149,7 @@ public class UserServiceImpl implements IUserService {
 	public Boolean signOut(User user) {
 		// TODO Auto-generated method stub
 		Boolean status = false;
-		Optional<User> resultUser = repository.findById(user.getUserId());
+		Optional<User> resultUser = iUserRepository.findById(user.getUserId());
 		if (!resultUser.isEmpty()) {
 			if (resultUser.get().getPassword().equals(user.getPassword())) {
 				status = true;
@@ -177,11 +177,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User changePassword(String id, String oldpassword, String newpassword) {
 		User changeUser;
-		Optional<User> resultUser = repository.findById(id);
+		Optional<User> resultUser = iUserRepository.findById(id);
 		if (!resultUser.isEmpty()) {
 			if (resultUser.get().getPassword().equals(oldpassword)) {
 				changeUser = new User(id, newpassword, resultUser.get().getRole());
-				repository.save(changeUser);
+				iUserRepository.save(changeUser);
 			} else {
 				throw new UserException("password not matched");
 			}
@@ -203,7 +203,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<User> getUsers() {
 		// TODO Auto-generated method stub
-		List<User> users = repository.findAll();
+		List<User> users = iUserRepository.findAll();
 		if (users.isEmpty()) {
 			throw new UserException("Users not found");
 		}
