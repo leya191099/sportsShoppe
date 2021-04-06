@@ -1,5 +1,6 @@
 package com.cp.sports.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 /**********
  * @author G. Jhansi 
  * Description It is a  repository interface that extends JPA repository 

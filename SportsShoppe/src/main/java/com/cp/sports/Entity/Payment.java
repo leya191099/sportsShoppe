@@ -13,6 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "payment")
+/**********
+ * @author Pranathi Boyina 
+ * Description It is entity class for the Payment module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ **********/
 public class Payment {
 	@Id
 	

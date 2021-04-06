@@ -11,6 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "card")
+/**********
+ * @author Pranathi Boyina 
+ * Description It is entity class for the card module
+ * Version 1.0 
+ * Created Date 23-March-2021
+ **********/
 public class Card {
 	@Id
 	private Long id;
