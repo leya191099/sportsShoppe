@@ -102,4 +102,49 @@ public class IOrderServiceTest {
 			iOrderService.removeOrder(2);
 		});
 	}
+	/****************************
+	 * Method :getOrderDetailsTest3
+	 * Description :To test the getOrderDetails method of IOrderService
+	 * CreatedBy - Leya Varghese 
+	 * Created Date-23-MAR-2021
+	 ****************************/
+	@Test
+	void getOrderDetailsTest3() {
+		System.out.println(iOrderService.getOrderDetails(10).getCustomer());
+	assertEquals("Customer [userId=105, name=Leya, email=vtu665@gmail.com, contactNo=9845612378, dob=1999-12-12, address=Address [doorNo=15, street=ganesh, area=power house, city=chirla, state=AP, pincode=523157]]", iOrderService.getOrderDetails(10).getCustomer().toString());
+	}
+	/****************************
+	 * Method :getOrderDetailsTest4
+	 * Description :To test the getOrderDetails method of IOrderService
+	 * CreatedBy - Leya Varghese 
+	 * Created Date-23-MAR-2021
+	 ****************************/
+	@Test
+	void getOrderDetailsTest4() {
+		System.out.println(iOrderService.getOrderDetails(10).getCustomer());
+	assertEquals("9845612378", iOrderService.getOrderDetails(10).getCustomer().getContactNo().toString());
+	}
+	/****************************
+	 * Method :getOrderDetailsTest5
+	 * Description :To test the getOrderDetails method of IOrderService
+	 * CreatedBy - Leya Varghese 
+	 * Created Date-23-MAR-2021
+	 ****************************/
+	@Test
+	void getOrderDetailsTest5() {
+		System.out.println(iOrderService.getOrderDetails(10).getCustomer());
+	assertEquals("vtu665@gmail.com", iOrderService.getOrderDetails(10).getCustomer().getEmail().toString());
+	}
+	/****************************
+	 * Method :exceptionTest2
+	 * Description :To test exception handling of IOrderService
+	 * CreatedBy - Leya Varghese 
+	 * Created Date-23-MAR-2021
+	 ****************************/
+	@Test
+	void exceptionTest2() {
+		assertThrows(OrderServiceException.class,()->{
+		iOrderService.addOrder(order);
+		});
+	}
 }

@@ -15,7 +15,6 @@ import com.cp.sports.dao.IOrderRepository;
 
 @Service
 @Transactional
-@Repository
 /****************************
  * @author Leya Varghese 
  * Description It is a service class that provides the
