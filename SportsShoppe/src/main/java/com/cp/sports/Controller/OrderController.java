@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import io.swagger.annotations.Api;
 @RestController
 @Api(value = "Swagger2DemoRestController")
 @RequestMapping("/sport")
+@CrossOrigin(origins = "http://localhost:4200")
 /****************************
  * @author Leya Varghese 
  * Description It is a Controller class that provides the
@@ -46,7 +48,7 @@ public class OrderController {
 	 * CreatedBy- Leya Varghese 
 	 * Created Date -24-MAR-2021
 	 ****************************/
-	@PostMapping("/order")
+	@PostMapping("/add")
 	public ResponseEntity<Orders> addOrder(@RequestBody Orders order) {
 		return new ResponseEntity<Orders>(iOrderService.addOrder(order),HttpStatus.OK);
 	}
@@ -60,7 +62,7 @@ public class OrderController {
 	 * CreatedBy- Leya Varghese 
 	 * Created Date - 23-MAR-2021
 	 ****************************/
-	@PutMapping("/order")
+	@PutMapping("/update")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order) {
 		return new ResponseEntity<Orders>(iOrderService.updateOrder(order.getOrderId(), order), HttpStatus.OK);
 	}
@@ -75,8 +77,8 @@ public class OrderController {
 	 * CreatedBy -Leya Varghese 
 	 * Created Date - 23-MAR-2021
 	 ****************************/
-	@GetMapping("/order/{id}")
-	public ResponseEntity<Orders> getOrderDetails(@PathVariable long id) throws OrderServiceException {
+	@GetMapping("/get/{id}")
+	public ResponseEntity<Orders> getOrderDetails(@PathVariable String id) throws OrderServiceException {
 		return new ResponseEntity<Orders>(iOrderService.getOrderDetails(id), HttpStatus.OK);
 	}
 
@@ -90,8 +92,8 @@ public class OrderController {
 	 * CreatedBy - Leya Varghese 
 	 * Created Date -24-MAR-2021
 	 ****************************/
-	@DeleteMapping("/order/{id}")
-	public ResponseEntity<Orders> removeOrder(@PathVariable long id) throws OrderServiceException {
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Orders> removeOrder(@PathVariable String id) throws OrderServiceException {
 		
 		return new ResponseEntity<Orders>(iOrderService.removeOrder(id),HttpStatus.BAD_REQUEST);
 	}
@@ -104,7 +106,7 @@ public class OrderController {
 	 * CreatedBy - Leya Varghese 
 	 * Created Date - 23-MAR-2021
 	 ****************************/
-	@GetMapping("/order/all")
+	@GetMapping("/all")
 	public ResponseEntity<List<Orders>> getAllOrders() {
 		return new ResponseEntity<List<Orders>>(iOrderService.getAllOrders(), HttpStatus.OK);
 	}

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,10 +24,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Orders {
 	@Id
 
-	private long OrderId;
+	private String OrderId;
 	private double amount;
 	private LocalDate billingDate;
 	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name="custId",referencedColumnName = "userId")
 	private Customer customer;
 
 	public Orders() {
@@ -33,7 +36,7 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(long orderId, double amount, LocalDate billingDate, Customer customer) {
+	public Orders(String orderId, double amount, LocalDate billingDate, Customer customer) {
 		super();
 		OrderId = orderId;
 		this.amount = amount;
@@ -41,11 +44,11 @@ public class Orders {
 		this.customer = customer;
 	}
 
-	public long getOrderId() {
+	public String getOrderId() {
 		return OrderId;
 	}
 
-	public void setOrderId(long orderId) {
+	public void setOrderId(String orderId) {
 		OrderId = orderId;
 	}
 

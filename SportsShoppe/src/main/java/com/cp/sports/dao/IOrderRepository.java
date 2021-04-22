@@ -13,6 +13,6 @@ import com.cp.sports.Entity.Orders;
  *Version 1.0 
  *Created Date 23-March-2021
  ****************************/
-public interface IOrderRepository extends JpaRepository<Orders, Long> {
+public interface IOrderRepository extends JpaRepository<Orders, String> {
 
 }

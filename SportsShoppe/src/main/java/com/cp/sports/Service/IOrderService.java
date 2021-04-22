@@ -8,11 +8,11 @@ import com.cp.sports.dto.IOrderDto;
 public interface IOrderService {
 	public Orders addOrder(Orders order);
 
-	public Orders removeOrder(long id);
+	public Orders removeOrder(String id);
 
-	public Orders updateOrder(long id,Orders order);
+	public Orders updateOrder(String id,Orders order);
 
-	public Orders getOrderDetails(long id);
+	public Orders getOrderDetails(String id);
 
 	public List<Orders> getAllOrders();
 }

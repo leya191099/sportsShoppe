@@ -58,7 +58,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * Created Date -23-MAR-2021
 	 ****************************/
 	@Override
-	public Orders removeOrder(long id) {
+	public Orders removeOrder(String id) {
 		// TODO Auto-generated method stub
 		Optional<Orders> order1 = iOrderRepository.findById(id);
 		if (order1.isEmpty()) {
@@ -77,7 +77,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * Created Date                     - 23-MAR-2021
 	 ****************************/
 	@Override
-	public Orders updateOrder(long id, Orders order) {
+	public Orders updateOrder(String id, Orders order) {
 		// TODO Auto-generated method stub
 		Optional<Orders> order1 = iOrderRepository.findById(id);
 		if (order1.isEmpty()) {
@@ -97,7 +97,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * Created Date                     - 23-MAR-2021
 	 ****************************/
 	@Override
-	public Orders getOrderDetails(long id) throws OrderServiceException {
+	public Orders getOrderDetails(String id) throws OrderServiceException {
 		// TODO Auto-generated method stub
 		Optional<Orders> order1 = iOrderRepository.findById(id);
 		if (order1.isEmpty())
