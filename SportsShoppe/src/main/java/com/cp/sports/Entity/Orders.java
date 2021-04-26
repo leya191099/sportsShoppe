@@ -28,7 +28,7 @@ public class Orders {
 	private double amount;
 	private LocalDate billingDate;
 	@ManyToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name="custId",referencedColumnName = "userId")
+	@JoinColumn(name="userId",referencedColumnName = "userId")
 	private Customer customer;
 
 	public Orders() {

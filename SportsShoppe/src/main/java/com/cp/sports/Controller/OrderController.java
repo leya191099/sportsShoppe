@@ -95,7 +95,7 @@ public class OrderController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Orders> removeOrder(@PathVariable String id) throws OrderServiceException {
 		
-		return new ResponseEntity<Orders>(iOrderService.removeOrder(id),HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Orders>(iOrderService.removeOrder(id),HttpStatus.OK);
 	}
 
 	/****************************
