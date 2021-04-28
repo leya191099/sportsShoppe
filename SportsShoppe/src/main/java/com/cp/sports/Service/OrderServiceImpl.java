@@ -40,6 +40,10 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public Orders addOrder(Orders order) {
 		// TODO Auto-generated method stub
+		if(order.getOrderId()==null) {
+
+			throw new OrderServiceException("Order ID should not be null");
+		}
 		Optional<Orders> order1 = iOrderRepository.findById(order.getOrderId());
 		if (order1.isEmpty())
 			return iOrderRepository.saveAndFlush(order);

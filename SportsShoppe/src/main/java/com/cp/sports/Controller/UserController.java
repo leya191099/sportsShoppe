@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ import io.swagger.annotations.Api;
 @RestController
 @Api(value = "Swagger2DemoRestController")
 @RequestMapping("/sports")
-
+@CrossOrigin(origins = "http://localhost:4200")
 //Class Level Comment
 /**********
 * @author Tejaswini.T Description It is a Controller class that provides the
@@ -153,7 +154,7 @@ public class UserController {
 	 * Created Date - 23-MAR-2021
 	 **********/
 	
-	@GetMapping("/all")
+	@GetMapping("/viewall")
 	public List<User> getAllUsers(){
 		return userservice.getUsers();
 	}

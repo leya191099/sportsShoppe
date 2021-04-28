@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/sports")
 @Api(value = "Swagger2DemoRestController")
+@CrossOrigin(origins = "http://localhost:4200")
 //Class Level Comment
 /****************************
  * @author G.Joslin Description It is a Controller class that provides the
@@ -34,7 +36,7 @@ public class ProductController {
 	@Autowired
 	private IProductService productservice;
 
-	@PostMapping("/product")
+	@PostMapping("/addproduct")
 	public ResponseEntity<Product> addProduct(@RequestBody Product product) {
 		Product resultProduct = productservice.addProduct(product);
 		return new ResponseEntity<Product>(resultProduct, HttpStatus.OK);
@@ -53,7 +55,7 @@ public class ProductController {
 	 *                                 24-MAR-2021
 	 ****************************/
 
-	@DeleteMapping("/product/{id}")
+	@DeleteMapping("/delproduct/{id}")
 	public void deleteProduct(@PathVariable String id) throws ProductServiceException {
 		productservice.removeProduct(id);
 	}
@@ -71,7 +73,7 @@ public class ProductController {
 	 *                                 24-MAR-2021
 	 ****************************/
 
-	@PutMapping("/product/{id}")
+	@PutMapping("/upproduct/{id}")
 	public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
 		Product resultProduct = productservice.updateProduct(product.getProductId(), product);
 		return new ResponseEntity<Product>(resultProduct, HttpStatus.OK);
@@ -87,7 +89,7 @@ public class ProductController {
 	 *                                23-MAR-2021
 	 ****************************/
 
-	@GetMapping("/products/{id}")
+	@GetMapping("/getproduct/{id}")
 	public ResponseEntity<Product> findProduct(@PathVariable String id) throws ProductServiceException {
 		Product resultProduct = productservice.getProduct(id);
 		return new ResponseEntity<Product>(resultProduct, HttpStatus.OK);
@@ -103,7 +105,7 @@ public class ProductController {
 	 *                                CreatedBy - G.JoslinCreated Date - 23-MAR-2021
 	 ****************************/
 
-	@GetMapping("/product/all")
+	@GetMapping("/all")
 	public List<Product> getProducts() {
 		return productservice.getAllProduct();
 	}
