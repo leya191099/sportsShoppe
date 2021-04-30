@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,8 @@ import io.swagger.annotations.Api;
 
 @RestController
 @Api(value = "Swagger2DemoRestController")
-@RequestMapping("/sport")
+@RequestMapping("/")
+@CrossOrigin(origins = "http://localhost:4200")
 //Class Level Comment
 /****************************
 * @author Hari Chandana 
@@ -47,7 +49,7 @@ public class CoupanController {
 	 *                                CreatedBy - A.Hari Chandana Created Date -
 	 *                                24-MAR-2021
 	 ****************************/
-	@PostMapping("/coupan")
+	@PostMapping("/addcoupan")
 	public ResponseEntity<Coupan> insertCoupan(@RequestBody Coupan coupan){
 		Coupan resultcoupan = iCoupanService.addCoupans(coupan);
 		return new ResponseEntity<Coupan>(resultcoupan,HttpStatus.OK);
@@ -64,7 +66,7 @@ public class CoupanController {
 	 *                                CreatedBy - A.Hari Chandana Created Date -
 	 *                                24-MAR-2021
 	 ****************************/
-	@DeleteMapping("/coupan/{id}")
+	@DeleteMapping("/deletecoupan/{id}")
 	public void deleteCoupan(@PathVariable String id) throws CoupanServiceException{
 	iCoupanService.removeCoupans(id);
 	}
@@ -76,7 +78,7 @@ public class CoupanController {
 	 * @throws CoupanServiceException - It is raised when coupan not found CreatedBy
 	 *                                - A.Hari Chandana Created Date - 23-MAR-2021
 	 ****************************/
-	@PutMapping("/coupan")
+	@PutMapping("/editcoupan")
 	public ResponseEntity<Coupan> editCoupans(@RequestBody Coupan coupan) {
 		Coupan resultCustomer = iCoupanService.editCoupans(coupan.getCoupanId(),coupan);
 		return new ResponseEntity<Coupan>(resultCustomer, HttpStatus.OK);
@@ -105,7 +107,7 @@ public class CoupanController {
 	 *                                CreatedBy - A.Hari Chandana Created Date -
 	 *                                23-MAR-2021
 	 ****************************/
-	@GetMapping("/coupan/all")
+	@GetMapping("/allcoupans")
 	public ResponseEntity<List<Coupan>> getAllCoupan(){
 		List<Coupan> resultCoupan = iCoupanService.getAllCoupans();
 		return new ResponseEntity<List<Coupan>>(resultCoupan, HttpStatus.OK);

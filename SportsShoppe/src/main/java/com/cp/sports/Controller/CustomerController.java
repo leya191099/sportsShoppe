@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,8 @@ import io.swagger.annotations.Api;
 
 @RestController
 @Api(value = "Swagger2DemoRestController")
-@RequestMapping("/sport")
+@RequestMapping("/")
+@CrossOrigin(origins = "http://localhost:4200")
 /****************************
  * @author G. Jhansi 
  * Description It is a Controller class that provides the
@@ -46,7 +48,7 @@ public class CustomerController {
 	 * Created Date                     - 24-MAR-2021
 	 ************************************************************************************/
 	
-	@PostMapping("/customer")
+	@PostMapping("/addcustomer")
 	public ResponseEntity<Customer> insertCustomer(@RequestBody Customer customer){
 		Customer resultcustomer = customerService.addCustomer(customer);
 		return new ResponseEntity<Customer>(resultcustomer,HttpStatus.OK);
@@ -65,7 +67,7 @@ public class CustomerController {
 	 * Created Date                     - 24-MAR-2021
 	 ************************************************************************************/
 	
-	@DeleteMapping("/customer/{id}")
+	@DeleteMapping("/deletecustomer/{id}")
 	public void deleteCustomer(@PathVariable String id) throws CustomerServiceException{
 	customerService.removeCustomer(id);
 	}
@@ -79,7 +81,7 @@ public class CustomerController {
 	 * Created Date                     - 23-MAR-2021
 	 ************************************************************************************/
 
-	@PutMapping("/customer")
+	@PutMapping("/updatecustomer")
 	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
 		Customer resultCustomer = customerService.updateCustomer(customer.getUserId(),customer);
 		return new ResponseEntity<Customer>(resultCustomer, HttpStatus.OK);
@@ -109,7 +111,7 @@ public class CustomerController {
 	 ************************************************************************************/
 
 
-	@GetMapping("/customer/all")
+	@GetMapping("/allcustomers")
 	public ResponseEntity<List<Customer>> getAllCustomer(){
 		List<Customer> resultCustomer = customerService.getAllCustomers();
 		return new ResponseEntity<List<Customer>>(resultCustomer, HttpStatus.OK);

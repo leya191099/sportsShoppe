@@ -111,8 +111,8 @@ public class UserController {
 	 **********/
 
 	@PostMapping("/user/login")
-	public ResponseEntity<Boolean> loginUser(@RequestBody User user){		
-		return new ResponseEntity<Boolean>(userservice.signIn(user),HttpStatus.OK);
+	public ResponseEntity<User> loginUser(@RequestBody User user){		
+		return new ResponseEntity<User>(userservice.signIn(user),HttpStatus.OK);
 	}
 	
 	/**********
@@ -125,8 +125,8 @@ public class UserController {
 	 **********/
 	
 	@PostMapping("/user/logout")
-	public ResponseEntity<Boolean> logoutUser(@RequestBody User user){		
-		return new ResponseEntity<Boolean>(userservice.signOut(user),HttpStatus.OK);
+	public ResponseEntity<User> logoutUser(@RequestBody User user){		
+		return new ResponseEntity<User>(userservice.signOut(user),HttpStatus.OK);
 	}
 	
 	/**********

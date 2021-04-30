@@ -27,6 +27,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserRepository iUserRepository;
+	private User user;
 
 	/**********
 	 * Method :addUser Description :To add the user to the database
@@ -118,20 +119,22 @@ public class UserServiceImpl implements IUserService {
 	 **********/
 
 	@Override
-	public Boolean signIn(User user) {
-		Boolean status = false;
+	public User signIn(User user) {
+		
 		Optional<User> resultUser = iUserRepository.findById(user.getUserId());
 		if (!resultUser.isEmpty()) {
 			if (resultUser.get().getPassword().equals(user.getPassword())) {
-				status = true;
+				return resultUser.get();
 			} else {
 				throw new UserException("password not matched");
 			}
+			
 		} else {
 			throw new UserException("User not found");
+			
 		}
-		return status;
-
+		
+		
 	}
 
 	/**********
@@ -146,20 +149,19 @@ public class UserServiceImpl implements IUserService {
 	 **********/
 
 	@Override
-	public Boolean signOut(User user) {
+	public User signOut(User user) {
 		// TODO Auto-generated method stub
-		Boolean status = false;
 		Optional<User> resultUser = iUserRepository.findById(user.getUserId());
 		if (!resultUser.isEmpty()) {
 			if (resultUser.get().getPassword().equals(user.getPassword())) {
-				status = true;
+				return resultUser.get();
 			} else {
 				throw new UserException("password not matched");
 			}
 		} else {
 			throw new UserException("User not found");
 		}
-		return status;
+		
 	}
 
 	/**********

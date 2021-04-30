@@ -10,8 +10,8 @@ public interface IUserService {
 
 	public User updateUser(User user);
 
-	public Boolean signIn(User user) ;
-	public Boolean signOut(User user);
+	public User signIn(User user) ;
+	public User signOut(User user);
 	public User changePassword(String id, String oldpassword,String newpassword);	
 
 
