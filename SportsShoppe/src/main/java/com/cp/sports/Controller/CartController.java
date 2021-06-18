@@ -20,11 +20,11 @@ import com.cp.sports.Service.ICartService;
 
 import io.swagger.annotations.Api;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/sports")
 @Api(value = "Swagger2DemoRestController")
-
+@CrossOrigin(origins = "http://localhost:4200")
 public class CartController {
 	@Autowired
 	private ICartService cartService;

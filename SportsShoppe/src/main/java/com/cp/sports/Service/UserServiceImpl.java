@@ -153,7 +153,7 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		Optional<User> resultUser = iUserRepository.findById(user.getUserId());
 		if (!resultUser.isEmpty()) {
-			if (resultUser.get().getPassword().equals(user.getPassword())) {
+			if (resultUser.get().getPassword().equals(user.getPassword())&&resultUser.get().getRole().equals(user.getRole())) {
 				return resultUser.get();
 			} else {
 				throw new UserException("password not matched");

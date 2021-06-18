@@ -38,7 +38,7 @@ public class CartServiceImpl implements ICartService {
 	public void removeCart(long cartId) {
 		Optional<Cart> cart1 = cartDao.findById(cartId);
 		if (cart1.isEmpty()) {
-			throw new ProductServiceException("Iten doesnt exist to delete in cart");
+			throw new ProductServiceException("Item doesnt exist to delete in cart");
 		} else
 			cartDao.delete(cart1.get());
 		
